@@ -1,0 +1,8 @@
+/Users/romeovasil/temepaoo/build/CMakeFiles/tema1.dir
+/Users/romeovasil/temepaoo/build/CMakeFiles/edit_cache.dir
+/Users/romeovasil/temepaoo/build/CMakeFiles/rebuild_cache.dir
+/Users/romeovasil/temepaoo/build/Student/CMakeFiles/Student.dir
+/Users/romeovasil/temepaoo/build/Student/CMakeFiles/UniStudent.dir
+/Users/romeovasil/temepaoo/build/Student/CMakeFiles/MasterStudent.dir
+/Users/romeovasil/temepaoo/build/Student/CMakeFiles/edit_cache.dir
+/Users/romeovasil/temepaoo/build/Student/CMakeFiles/rebuild_cache.dir
