@@ -2,6 +2,14 @@
 #include <iostream>
 #include <cstring>
 
+std::mutex olympicTeamMutex;
+std::mutex threadsNumMutex;
+
+
+string Student::olympicTeam[5];
+int Student:: threadsNum;
+
+
 Student::Student(){
     name = new char[strlen("DefaultName") + 1];
     strcpy(this->name,"DefaultName");
@@ -73,3 +81,47 @@ Student& Student::operator=(Student&& other){
 
         return *this;
 }
+
+
+
+void Student:: joinOlympicTeam(){
+    pthread_t pthr;
+
+    threadsNumMutex.lock();
+    threadsNum++;
+    threadsNumMutex.unlock();
+
+    pthread_create(&pthr, NULL, addNameToTeam, this);
+    this->olympic = true;
+}
+
+void* Student::addNameToTeam(void* arg){
+    Student* student = static_cast<Student*> (arg);
+    olympicTeamMutex.lock();
+    for(int i=0;i<5;i++)
+    {
+        if(olympicTeam[i].empty()){
+            olympicTeam[i] = student->name;
+            break;
+        }
+    }
+
+    olympicTeamMutex.unlock();
+
+    threadsNumMutex.lock();
+    threadsNum--;
+    threadsNumMutex.unlock();
+
+    return NULL;
+}
+
+void Student::showTeam() {
+    while(threadsNum != 0);
+
+    for(int i=0; i<5; i++) {
+        cout<<" "<<olympicTeam[i]<<" ";
+    }
+
+    cout<<endl;
+}
+
